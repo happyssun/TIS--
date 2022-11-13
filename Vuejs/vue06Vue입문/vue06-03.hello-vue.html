@@ -50,9 +50,10 @@
 
 
 <script>
+  // new Vue로 뷰 인스턴스 생성
   new Vue({
     /* edtmc^2w */
-    el: 'app',
+    el: '#app',
     data: {
       /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
       /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
@@ -62,7 +63,9 @@
     //template: ``,
     methods: {
       /* 이벤트 핸들러 등록 + 일반 함수 */
-      clickBtn() { alert('hi') }
+      clickBtn: function () {
+        this.$data.message = 'hi!! Sun~~~'
+      }
 
 
     },

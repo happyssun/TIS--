@@ -1,0 +1,20 @@
+https://www.npmjs.com/
+
+
+디버깅시 자주 사용되는 단축키
+  debugger
+  F5
+  F8 : 점프
+  F10: 한줄씩
+  F11
+
+
+vue 단축키:
+  vueplugin
+  vuei
+  vuefc
+
+실행중인 서버 중지 : ctrl + c
+
+변수 ==> data     <== v-?? , {{}} , :
+함수 ==> methods  <== v-on , @
