@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+      content="ie=edge">
     <title>Document</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet"
+      href="../css/reset.css">
 
     <style>
-        span {
-            font-size: 3em;
-        }
+      span {
+        font-size: 3em;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <xmp>
 
         data 프로퍼티의 값을 변경하려면 복제 후 재할당으로 처리해야 한다.
@@ -100,13 +104,67 @@
     </xmp>
     <hr>
     <div id="app">
-        <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
-        <br>
-        <button v-on:click="change1">방법1로 변경</button>
-        <button v-on:click="change2">방법2로 변경</button>
-        <button v-on:click="change3">방법3로 변경</button>
-        <button v-on:click="change4">방법4로 변경</button>
+      <span v-for="(val, i) in arr"
+        v-bind:key="i"> {{val}} </span>
+      <br>
+      <button v-on:click="change1">방법1로 변경</button>
+      <button v-on:click="change2">방법2로 변경</button>
+      <button v-on:click="change3">방법3로 변경</button>
+      <button v-on:click="change4">방법4로 변경</button>
     </div>
-</body>
+  </body>
 
+  <!-- vue 플러그인 임포트   -->
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+  <script>
+
+    new Vue({
+      /* edtmc^2w */
+      el: '#app',
+      data: {
+        /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+        /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
+        arr: [1, 2, 3, 4, 5]
+      },
+      //template: ``,
+      methods: {
+        /* 이벤트 핸들러 등록 + 일반 함수 */
+        change1(e) {
+          console.log(e.target)
+          //this.$data.arr[0] = 100;  - 비동기처리 (값이 바로 안바뀜)
+
+          //복제후 재할당 $set에는 복제 후 재할당 기능이 포함
+          // - 이거대신 map,filter,spread를 사용해서 복제를 하고 재할당해도됨
+
+          // 0은 배열번호, 뒤의 100은 값 - 0번 배열에 있는 값을 100으로
+          this.$set(this.$data.arr, 0, 100)
+
+          console.log(this.$data.arr)
+        },
+        change2(e) {
+          console.log(e.target)
+          //this.$data.arr[1] = 300;
+
+          Vue.set(this.$data.arr, 1, 300)
+          console.log(this.$data.arr)
+        },
+        change3(e) {
+          console.log(e.target)
+
+          // splice도 복제후 재할당 기능이 있음 - filter를 더 많이 사용
+          this.$data.arr.splice(0, 2); //0번부터 2개 없애기
+          console.log(this.$data.arr)
+        },
+        change4(e) {
+          console.log(e.target)
+
+          this.$data.arr = [500, ...this.$data.arr, 70]
+          console.log(this.$data.arr)
+        }
+
+      },
+
+    });
+
+  </script>
 </html>

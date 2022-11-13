@@ -19,3 +19,19 @@
         iterator를 생성해서 next()로 순회할 수 있는 자료구조가 이터러블
 
 */
+
+const cities = ['서울', '부산', '제주'];
+const x = cities[0];
+const y = cities[1];
+const z = cities[2];
+
+console.log(x, y, z);
+console.log(...cities); // 위의 값과 같음 - 스프레드연산자
+
+const east = ['U', 'K', 'T'];
+const west = ['N', 'C', 'G'];
+
+console.log(east.concat(west)); // 과거 사용법
+
+const countries = [...east, ...west]; // 우리는 이것으로 이용
+console.log(countries);
