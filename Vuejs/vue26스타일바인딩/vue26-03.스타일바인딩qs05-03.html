@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet"
+      href="../css/reset.css">
 
     <style>
-        div.button {
-            width: 100px;
-            height: 50px;
-            border: 1px solid black;
-            text-align: center;
-            line-height: 50px;
-        }
+      div.button {
+        width: 100px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+      }
     </style>
 
-</head>
+  </head>
 
-<body>
+  <body>
     <xmp>
         javascript에서 style 프로퍼티 설정 방식과 설정시의 주의 사항을 학습한다.
           1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
@@ -46,6 +49,7 @@
 
         도전1. Vue.js 를 사용하여 "==>"를 클릭하면 TO-BE 박스에 아래의
                style 속성을 적용하여 AS-IS 처럼 만드시오.
+                (하나의 변수를 만들어서 속성을 넣자)
           height: 50px;
           width: 150px;
           border: 1px solid black;
@@ -57,41 +61,73 @@
           padding: 50px;
     </xmp>
     <style>
-        #example3>* {
-            float: left;
-            margin: 10px 50px 10px 0px;
-            line-height: 100px;
-        }
+      #example3>* {
+        float: left;
+        margin: 10px 50px 10px 0px;
+        line-height: 100px;
+      }
 
-        #example3asis {
-            height: 50px;
-            width: 150px;
-            border: 1px solid black;
-            text-align: center;
-            line-height: 50px;
-            font-weight: 800;
-            color: red;
-            background-color: darkgoldenrod;
-            padding: 50px;
-        }
+      #example3asis {
+        height: 50px;
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 800;
+        color: red;
+        background-color: darkgoldenrod;
+        padding: 50px;
+      }
 
-        #example3tobe {
-            border: 1px dashed blue;
-            width: 150px;
-        }
+      #example3tobe {
+        border: 1px dashed blue;
+        width: 150px;
+      }
     </style>
     <div id="example3">
 
-        <span id="example3asis">
-            AS-IS
-        </span>
-        <button v-on:click="clickArrow">
-            ==>
-        </button>
-        <div id="example3tobe" v-bind:style="style1">
-            TO-BE
-        </div>
+      <span id="example3asis">
+        AS-IS
+      </span>
+      <button v-on:click="clickArrow">
+        ==>
+      </button>
+      <div id="example3tobe"
+        v-bind:style="style1">
+        TO-BE
+      </div>
     </div>
-</body>
+  </body>
 
+  <!-- vue 플러그인 임포트   -->
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+  <script>
+    new Vue({
+      /* edtmc^2w */
+      el: '#example3',
+      data: {
+        style1: null,
+
+      },
+      methods: {
+        clickArrow() {
+          const style = {
+            height: '50px',
+            width: '150px',
+            border: '1px solid black',
+            textAlign: 'center',
+            lineHeight: '50px',
+            fontWeight: '800',
+            color: 'red',
+            backgroundColor: ' darkgoldenrod',
+            padding: '50px',
+          }
+
+          this.$data.style1 = style;
+        }
+
+      },
+    });
+
+  </script>
 </html>
