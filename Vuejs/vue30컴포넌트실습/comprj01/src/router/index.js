@@ -51,6 +51,14 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/Vue34exView.vue'),
   },
+  {
+    path: '/3701',
+    name: '3701',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/Vue3701View.vue'),
+  },
 ];
 
 const router = createRouter({
