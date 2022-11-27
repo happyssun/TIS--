@@ -1,22 +1,18 @@
-<style scoped>
-.main {
-  border: solid 1px black;
-  background-color: yellow;
-}
-</style>
+<style scoped></style>
+
 <template>
-  <div class="main">
-    {{ msg }}
-    <child11 />
-    {{ msg }}
+  <div id="app">
+    <h1>{{ header }}</h1>
+    <h2>{{ welcome }}</h2>
+    <h3>{{ counter }}</h3>
+    <div><input type="checkbox" v-model="callapi" />외부 api 호출</div>
+    <button v-on:click="handlerIncrement">더해줘</button>
+    <button v-on:click="handlerDecrement">빼줘</button>
   </div>
 </template>
-
 <script>
-import CompChild11 from './CompChild11.vue';
-
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
-// import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
+import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
 
 export default {
   /* pdtmc^2w */
@@ -25,14 +21,31 @@ export default {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
     return {
-      msg: 'Child1',
+      header: 'Vuex 사용 앱',
+      // welcome: 'HELLO WORLD',
+      // counter: 0,
+      callapi: false,
     };
   },
   //template: ``,
   methods: {
+    ...mapActions('counterStore', { dispatchSet: 'set', dispatchGet: 'get' }),
+
+    handlerIncrement(e) {
+      console.log(e.target);
+      debugger;
+      // this.$data.counter = this.$data.counter + 1;
+      this.dispatchSet(+1);
+    },
+    handlerDecrement(e) {
+      console.log(e.target);
+      debugger;
+      // this.$data.counter = this.$data.counter - 1;
+      this.dispatchSet(-1);
+    },
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우
-      mapActions 는 store의 actions 를 가져옵니다.
+      mapActions 는 store의 actions 를 가져오는 헬퍼메소드
       namespaced: true를 설정한 경우 네임스페이스를 사용하기 때문에 store의 모듈 명을 적어주어야 합니다.
       store 모듈에서 actions 를 가져오는 2가지 방식
       1) store.모듈명.actions 이름 바꾸어 사용하기(추천방식)
@@ -42,15 +55,18 @@ export default {
       */
   },
   components: {
-    child11: CompChild11,
-
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },
   computed: {
+    ...mapGetters('counterStore', ['welcome', 'counter']),
+    //store/index.js에 있는 모듈명
+    //counterStore에 인는 getters안에있는 것들
+    //이때 data 안에 있는 웰컴과 카운터는 지운다.. 왜냐 둘이 서로 공존할수 없음
+
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */
     /* vuex 를 사용하는 경우
-      mapGetters 는 store의 getters 를 가져옵니다.
+      mapGetters 는 store의 getters 를 가져오는 헬프 메소드
       namespaced: true를 설정한 경우 네임스페이스를 사용하기 때문에 store의 모듈 명을 적어주어야 합니다.
       store 모듈에서 getters 를 가져오는 2가지 방식
       1) store.모듈명.getters 이름 바꾸어 사용하기

@@ -1,35 +1,106 @@
 <style scoped>
-.main {
-  border: solid 1px black;
-  background-color: yellow;
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-top: 0;
+  text-align: left;
+}
+li {
+  display: flex;
+  min-height: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0.5rem 0;
+  padding: 0 0.9rem;
+  background: white;
+  border-radius: 5px;
+}
+li.checked {
+  background: #bbb;
+  color: #fff;
+  text-decoration: line-through;
+}
+.checkBtn {
+  line-height: 45px;
+  color: #62acde;
+  margin-right: 5px;
+}
+.removeBtn {
+  margin-left: auto;
+  color: #de4343;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
+
 <template>
-  <div class="main">
-    {{ msg }}
-    <child11 />
-    {{ msg }}
-  </div>
+  <section>
+    <transition-group name="list" tag="ul">
+      <li
+        v-for="todoItem in todoItems"
+        v-bind:key="todoItem.id"
+        v-bind:class="checked(todoItem.done)"
+        v-on:click="doneToggle(todoItem.id)"
+      >
+        <i class="checkBtn fas fa-check" aria-hidden="true"></i>
+        {{ todoItem.todo }}
+        <span
+          class="removeBtn"
+          type="button"
+          v-on:click.stop="removeTodo(todoItem.id)"
+        >
+          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        </span>
+      </li>
+    </transition-group>
+  </section>
 </template>
 
 <script>
-import CompChild11 from './CompChild11.vue';
-
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
 
 export default {
   /* pdtmc^2w */
-  props: [],
+  props: ['todoItems'],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
-    return {
-      msg: 'Child1',
-    };
+    return {};
   },
   //template: ``,
   methods: {
+    doneToggle(id) {
+      // debugger;
+      console.log(id);
+      this.$emit('doneToggle', id);
+    },
+
+    removeTodo(id) {
+      // debugger;
+      console.log(id);
+      this.$emit('removeTodo', id);
+
+      //이벤트 버블링 막기
+      //vue에서는 .stop을 사용 - 그래서 위에 html태그에  v-on:click.stop를 붙여사용
+      window.event.stopPropagation();
+      window.event.preventDefault();
+    },
+
+    checked(done) {
+      console.log(done);
+      if (done === true) return 'checked';
+      else return null;
+    },
+
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져옵니다.
@@ -42,8 +113,6 @@ export default {
       */
   },
   components: {
-    child11: CompChild11,
-
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },

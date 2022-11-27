@@ -1,20 +1,25 @@
 <style scoped>
-.main {
-  border: solid 1px black;
-  background-color: yellow;
+.clearAllContainer {
+  width: 8.5rem;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.clearAllBtn {
+  color: #e20303;
+  display: block;
 }
 </style>
+
 <template>
-  <div class="main">
-    {{ msg }}
-    <child11 />
-    {{ msg }}
+  <div class="clearAllContainer">
+    <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
   </div>
 </template>
 
 <script>
-import CompChild11 from './CompChild11.vue';
-
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
 
@@ -24,26 +29,19 @@ export default {
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
-    return {
-      msg: 'Child1',
-    };
+    return {};
   },
   //template: ``,
   methods: {
-    /* 이벤트 핸들러 등록 + 일반 함수 */
-    /* vuex 를 사용하는 경우
-      mapActions 는 store의 actions 를 가져옵니다.
-      namespaced: true를 설정한 경우 네임스페이스를 사용하기 때문에 store의 모듈 명을 적어주어야 합니다.
-      store 모듈에서 actions 를 가져오는 2가지 방식
-      1) store.모듈명.actions 이름 바꾸어 사용하기(추천방식)
-         ...mapActions('모듈명', { dispatch액션명1: '액션명1', dispatch액션명2: '액션명2' }),
-      2) store.모듈명.actions 이름 그대로 사용하기
-         ...mapActions('모듈명', ['액션명1', '액션명2']),
-      */
+    clearAll(e) {
+      console.log(e.target);
+      debugger;
+      this.$emit('clearAll', e);
+      //부모의 이벤트를 가져옴. 요기뒤에 붙는 인자값이 todoview의 clearall(e)여기의 e값으로 들어감
+      //여기서 (e는 36번째 줄의 e에서 가져오는 값)
+    },
   },
   components: {
-    child11: CompChild11,
-
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },

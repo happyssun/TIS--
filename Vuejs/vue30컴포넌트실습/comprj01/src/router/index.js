@@ -59,6 +59,22 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/Vue3701View.vue'),
   },
+  {
+    path: '/4301',
+    name: '4301',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/Page4301View.vue'),
+  },
+  {
+    path: '/todolist',
+    name: 'todolist',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/TodoView.vue'),
+  },
 ];
 
 const router = createRouter({
