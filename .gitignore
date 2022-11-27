@@ -1,0 +1,8 @@
+*.zip
+*.psd
+**/node_modules/
+**/bin/
+**/zoom.txt
+**/.eslintcache
+token
+/새 폴더
