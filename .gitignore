@@ -4,5 +4,9 @@
 **/bin/
 **/zoom.txt
 **/.eslintcache
+<<<<<<< HEAD
 token
 /새 폴더
+=======
+token
+>>>>>>> 2d19db72365fc77e9f5542fb847a9865a7cb2463
