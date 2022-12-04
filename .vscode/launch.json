@@ -7,37 +7,7 @@
   // https://stackoverflow.com/questions/48645098/vscode-keyboard-shortcut-for-launch-configuration
 
   "version": "0.2.0",
-  "compounds": [
-    {
-      "name": "Launch file and start chrome",
-      "configurations": [
-        "Execute Current File With nodemon",
-        "Execute Current File With NodeJS",
-        "JavaScript: Current File",
-        "Launch Chrome"
-      ],
-      "preLaunchTask": "Start server",
-      "stopAll": true
-    }
-  ],
   "configurations": [
-    {
-      // https://krauser085.github.io/nodemon/
-      "name": "Execute Current File With nodemon",
-      "type": "node",
-      "request": "launch",
-      "program": "${file}",
-      "runtimeExecutable": "nodemon",
-      "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    },
-    {
-      "name": "Execute Current File With NodeJS",
-      "type": "node",
-      "request": "launch",
-      "program": "${file}"
-    },
     {
       "name": "JavaScript: Current File",
       "type": "node",

@@ -149,10 +149,5 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.fontSize": 14
-  },
-
-  "launches": {
-    "DebugNodemon": "Execute Current File With nodemon",
-    "DebugNodejs": "Execute Current File With NodeJS"
   }
 }

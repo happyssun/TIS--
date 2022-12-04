@@ -25,3 +25,19 @@
     변수 중복 선언 불가
     변수 이름 충돌 불가
 */
+
+const msg = 'global scope';
+
+if (true) {
+  const msg = 'block scope';
+}
+
+const outer = (params) => {
+  const msg = 'function scope at outer';
+  if (ture) {
+    const msg = 'block scope at outer';
+  }
+};
+
+const pizza = true;
+pizza = false;

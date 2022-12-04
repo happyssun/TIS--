@@ -12,3 +12,16 @@
     rest 연산자(...)를 사용하여 함수의 매개변수를 작성한 형태다.
     함수의 매개변수로 넘어오는 값들을 "배열"로 만든다.
 */
+
+// arguments 대신에 rest 연산자를 사용한다.
+// rest는 하나로 합치는 기능이라면 spread는 분리의 기능
+// =를 기준점으로 rest는 왼쪽의 ...  spread는 오른쪽에 ...
+function greet(...args) {
+  console.log('가변매개변수(rest연산자) >>', args);
+  console.log('arguments >>', arguments);
+  console.log('\n\n');
+}
+
+greet();
+greet('Elise');
+greet('mike', 'Hi');
