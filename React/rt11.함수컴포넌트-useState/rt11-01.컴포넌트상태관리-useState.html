@@ -168,7 +168,10 @@
     // useState 를 사용한 컴포넌트의 상태값 설정
     const [age, setAge] = useState(42);
     const [fruit, setFruit] = useState('banana');
-    const [todos, setTodos] = useState([{ text: 'Learn React' }]);
+    const [todos, setTodos] = useState([
+      { text: 'Learn React' },
+      { text: 'Learn Hook' },
+      { text: 'Redux' }]);
 
 
 
@@ -195,7 +198,7 @@
         </div>
         <p> age: {age}</p>
         <p> fruit: {fruit /* fruit 상태값이 출력되게 하시오. */}</p>
-        <p> { }</p>
+        <p> {todos && todos.map((todo, index) => (<li key={index}> {todo.text} </li>))}</p>
       </div>
     )
 
