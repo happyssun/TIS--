@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 
 import counterStore from './modules/counterStore';
+import todoStore from './modules/todoStore';
 
 export default createStore({
   state: {},
@@ -10,5 +11,6 @@ export default createStore({
   modules: {
     //'모듈명:store명', 형태로 저장
     counterStore: counterStore,
+    todoStore: todoStore,
   },
 });

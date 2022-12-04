@@ -91,7 +91,7 @@
     * 페이지 129~174를 참고
     * vue29-01.ToDo.html 예제 참조
 
-    "vue40App" 폴더의 vueapp01 프로젝트에 아래 기능을 추가한다.
+    "vue30컴포넌트실습" 폴더의 comprj01 프로젝트에 아래 기능을 추가한다.
 
     ##################################
     1. 앱 요구사항
@@ -239,13 +239,13 @@
     ##################################
 
         step 7-1. src/views/TodoView.vue 에 style 과 template 추가
-            vue61ToDo/1차/TodoView.vue 내용을 복사하여 붙여넣기
+            vue45ToDo/1차/TodoView.vue 내용을 복사하여 붙여넣기
 
         step 7-2. src/components/todo/TodoHeader.vue 기능완성
 
 
         step 7-2-1. src/components/todo/TodoHeader.vue 에 style 과 template 추가
-            vue61ToDo/1차/TodoHeader.vue 내용을 복사하여 붙여넣기
+            vue45ToDo/1차/TodoHeader.vue 내용을 복사하여 붙여넣기
 
         step 7-2-2. src/components/todo/TodoHeader.vue  에 추가
             < script>
@@ -255,7 +255,7 @@
               };
             </script>
 
-        step 7-2-3. src/views/TodoView.vue 에 TodoHeader컴포넌트 등록
+        step 7-2-3. src/views/TodoView.vue 에 TodoHeader 컴포넌트 등록
 
             <template>
                 <div id="app">
@@ -273,17 +273,17 @@
                   TodoHeader,
                 }
               }
-            </>
+            </script>
 
 
-                step 7 - 3. src / components / todo / TodoFooter.vue  만들기
+        step 7-3. src/components/todo/TodoFooter.vue  만들기
 
-        step 7 - 3 - 1. src / components / todo / TodoFooter.vue 에 style 과 template 추가
-              vue61ToDo / 1차 / TodoFooter.vue 내용을 복사하여 붙여넣기
+        step 7-3-1. src/components/todo/TodoFooter.vue 에 style 과 template 추가
+            vue45ToDo/1차/TodoFooter.vue 내용을 복사하여 붙여넣기
 
-        step 7 - 3 - 2. src / components / todo / TodoFooter.vue  에 추가
-                < script >
-            export default {
+        step 7-3-2. src/components/todo/TodoFooter.vue  에 추가
+            < script>
+              export default {
                 /* pdtmc^2w */
                 props: [],
                 methods: {
@@ -327,7 +327,7 @@
         step 7-4. src/components/todo/TodoInput.vue  만들기
 
         step 7-4-1. src/components/todo/TodoInput.vue  에 style 과 template 추가
-            vue61ToDo/1차/TodoInput.vue 내용을 복사하여 붙여넣기
+            vue45ToDo/1차/TodoInput.vue 내용을 복사하여 붙여넣기
 
         step 7-4-2. src/components/todo/TodoInput.vue 에 나머지 코드 완성
 
@@ -345,7 +345,7 @@
                     }
                 }
             };
-            </script>
+
         step 7-4-3. src/views/TodoView.vue 에 TodoInput 컴포넌트 등록
             template 에 props와 event 바인드를 설정
             <template>
@@ -379,7 +379,7 @@
 
         step 7-5. src/components/todo/TodoList.vue  만들기
         step 7-5-1. src/components/todo/TodoList.vue   에 style 과 template 추가
-            vue61ToDo/1차/TodoList.vue 내용을 복사하여 붙여넣기
+            vue45ToDo/1차/TodoList.vue 내용을 복사하여 붙여넣기
         step 7-5-2. src/components/todo/TodoList.vue   에 추가
             < script>
               export default {
@@ -493,6 +493,7 @@
 
 
         step 9-4. rc/components/todo/TodoInput.vue  에 추가
+          TodoInput 컴포넌트의 input 태그에 값을 초기화
         < script>
           export default {
             /* pdtmc^2w */
@@ -548,8 +549,7 @@
             methods: {
               clearAll() {
                 // delete
-                //this.$data.todoItems = [];
-                this.$set(this.$data, "todoItems", []);
+                this.$data.todoItems = [];
               },
               doneToggle(id) {
                 // update
@@ -581,8 +581,13 @@
                 // 입력된 값 초기화
 
                 // max id 구하기 ==> map과 reduce 를 사용하여
+                //    1. id 값 만 있는 새로운 배열을 만든다. ==> map() 메서드 사용.
+                //    2. map() 메서드로 만들어진 새로운 배열에서 최대값을 찾는다. ===> reduce() 메서드 사용
+                //    3. 추가될 새로운 id = max id + 1
+
                 // todoItems 추가할 객체 만들기
-                // 배열에 추가
+
+                // todoItems 배열에 객체 추가
 
                 // newTodoItem 값이 없으면 종료한다. 빈값 호출 방지.
                 if (newTodoItem && newTodoItem.trim() === "") {
@@ -640,9 +645,8 @@
             3. 인스턴스나 컴포넌트 의 methods 에서 store.dispatch 호출 하도록 수정
 
         3. 컴포넌트의 로직을 Vuex 로 이동시 주의 사항.
-            1. this.$set() 는 Vuex 에서 사용할 수 없다.
-            2. this.$data 는 Vuex 에서 사용할 수 없다. ==> this.$data 는  state 로 변경 한다.
-            3. Vuex 에서 객체배열(Object Array)에 값을 추가할 때는 array의 push 메서드를 사용해도 된다.
+            1. this.$data 는 Vuex 에서 사용할 수 없다. ==> this.$data 는  state 로 변경 한다.
+            2. Vuex 에서 객체배열(Object Array)에 값을 추가할 때는 array의 push 메서드를 사용해도 된다.
 
 
     ##################################
@@ -660,7 +664,7 @@
             $ touch ./src/store/index.js
             $ touch ./src/store/modules/todoStore.js
 
-        11-3. todoStore.js
+        11-3. todoStore.js 코드 만들기
             // 파일 위치: /src/store/modules/todoStore.js
             // 단축키: vuex
 
